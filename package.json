@@ -6,7 +6,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "nodemon start",
-    "start:prod": "set NODE_ENV=production && nodemon start",
+    "start:prod": "set NODE_ENV=production&& nodemon start",
     "debug": "ndb server.js"
   },
   "author": "freddo.medina",
@@ -15,6 +15,7 @@
     "bcryptjs": "^2.4.3",
     "dotenv": "^16.4.5",
     "express": "^4.21.1",
+    "jsonwebtoken": "^9.0.2",
     "mongoose": "^8.7.2",
     "morgan": "^1.10.0",
     "ndb": "^1.1.5",
