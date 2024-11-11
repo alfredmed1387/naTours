@@ -1,6 +1,6 @@
 const mongoose = require("mongoose");
-const slugify = require('slugify');
-const validator = require('validator');
+const slugify = require("slugify");
+const validator = require("validator");
 
 const tourSchema = new mongoose.Schema(
   {
@@ -44,8 +44,7 @@ const tourSchema = new mongoose.Schema(
       type: Number,
       required: [true, "A tour must have a price"],
     },
-    priceDiscount: 
-    {
+    priceDiscount: {
       type: Number,
       validate: {
         validator: function (val) {
@@ -88,7 +87,7 @@ const tourSchema = new mongoose.Schema(
 );
 // DOCUMENT MIDDLEWARE: runs before .save() and .create() not for updates
 tourSchema.pre("save", function (next) {
-  this.slug = slugify(this.name, {lower: true})
+  this.slug = slugify(this.name, { lower: true });
   next();
 });
 tourSchema.pre(/^find/, function (next) {
@@ -103,7 +102,6 @@ tourSchema.post(/^find/, function (docs, next) {
 
 tourSchema.pre("aggregate", function (next) {
   this.pipeline().unshift({ $match: { secretTour: { $ne: true } } });
-
   console.log(this.pipeline());
   next();
 });

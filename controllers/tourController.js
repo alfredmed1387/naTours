@@ -131,10 +131,12 @@ exports.updateTour = (req, res, next) => {
       });
     });
 };
-exports.deleteTour = (req, res) => {
+exports.deleteTour = (req, res, next) => {
   Tour.findByIdAndDelete(req.params.id)
     .then((doc) => {
-      console.log(doc);
+      if (!doc) {
+        return next(new AppError('Tour not found', 404))
+      }
       res.status(204).json({
         status: "success",
         data: null,
