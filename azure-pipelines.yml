@@ -43,7 +43,7 @@ stages:
       inputs:
        appName: $(WebAppName)
        azureSubscription: 'Pago por uso (01935c15-660b-49b8-8670-8f0989da72c1)'
-       imageName: $(RegistryName)/$(webRepository):$(build.buildId)
+       imageName: $(RegistryName).azurecr.io/$(webRepository):$(build.buildId)
 # steps:
 #- task: DockerInstaller@0
 #  displayName: Docker Installer
