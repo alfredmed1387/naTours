@@ -102,7 +102,7 @@ exports.restrictTo = (...roles) => {
   return (req, res, next) => {
     // if (!roles.find((x) => x === req.user?.role)) {
     if (!roles?.includes(req.user?.role)) {
-      return next(new AppError("User not allowed to delete", 403));
+      return next(new AppError("User not allowed", 403));
     }
     next();
   };

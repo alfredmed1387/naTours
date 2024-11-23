@@ -10,17 +10,17 @@ class APIFeatures {
     excludedFields.forEach((el) => delete queryObj[el]);
 
     // 1B) Advanced filtering
-    // let queryStr = JSON.stringify(queryObj);
-    // queryStr = queryStr.replace(/\b(gte|gt|lte|lt)\b/g, (match) => `$${match}`);
+    let queryStr = JSON.stringify(queryObj);
+    queryStr = queryStr.replace(/\b(gte|gt|lte|lt)\b/g, (match) => `$${match}`);
 
-    this.query = this.query.find(queryObj);
+    this.query = this.query.find(JSON.parse(queryStr));
 
     return this;
   }
 
   sort() {
     if (this.queryString.sort) {
-      const sortBy = this.queryString.sort.replace(",", " ");      
+      const sortBy = this.queryString.sort.replace(",", " ");
       this.query = this.query.sort(sortBy);
     } else {
       this.query = this.query.sort("-createdAt");
